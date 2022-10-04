@@ -1,0 +1,19 @@
+.draggable {
+  background-color: blue;
+  width: 200px;
+  height: 200px;
+  border-radius: 9999px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  mix-blend-mode: multiply;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.draggableTitle {
+  color: white;
+  font-size: 2rem;
+  transition: opacity 0.2s ease-in-out;
+}

@@ -1,0 +1,83 @@
+---
+import Draggable from "../components/draggable";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Vogelkijker</title>
+
+    <style>
+      @font-face {
+        font-family: "Basteleur";
+        src: url("/fonts/basteleur-bold.ttf") format("ttf");
+      }
+
+      body {
+        font-family: "Basteleur", serif;
+      }
+
+      .bird-container img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        mix-blend-mode: multiply;
+      }
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="svg-filters">
+      <filter id="duotone_red">
+        <feColorMatrix
+          type="matrix"
+          result="grayscale"
+          values="1 0 0 0 0
+              1 0 0 0 0
+              1 0 0 0 0
+              0 0 0 1 0"
+        ></feColorMatrix>
+
+        <feComponentTransfer
+          color-interpolation-filters="sRGB"
+          result="duotone_navy_orange"
+        >
+          <feFuncR type="table" tableValues="1 1"></feFuncR>
+          <feFuncG type="table" tableValues="0 1"></feFuncG>
+          <feFuncB type="table" tableValues="0 1"></feFuncB>
+          <feFuncA type="table" tableValues="0 1"></feFuncA>
+        </feComponentTransfer>
+      </filter>
+      <filter id="duotone_blue">
+        <feColorMatrix
+          type="matrix"
+          result="grayscale"
+          values="1 0 0 0 0
+              1 0 0 0 0
+              1 0 0 0 0
+              0 0 0 1 0"
+        ></feColorMatrix>
+
+        <feComponentTransfer
+          color-interpolation-filters="sRGB"
+          result="duotone_navy_orange"
+        >
+          <feFuncR type="table" tableValues="0 1"></feFuncR>
+          <feFuncG type="table" tableValues="0 1"></feFuncG>
+          <feFuncB type="table" tableValues="1 1"></feFuncB>
+          <feFuncA type="table" tableValues="0 1"></feFuncA>
+        </feComponentTransfer>
+      </filter>
+    </svg>
+
+    <div class="bird-container">
+      <img src="/ekster.png" alt="" style="filter: url('#duotone_red')" />
+      <img src="/kauw.png" alt="" style="filter: url('#duotone_blue')" />
+    </div>
+    <Draggable color="blue" name="Ekster" client:load />
+    <Draggable color="red" name="Kauw" client:load />
+  </body>
+</html>
